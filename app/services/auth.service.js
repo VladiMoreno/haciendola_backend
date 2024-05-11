@@ -40,6 +40,41 @@ async function login(req, res) {
   });
 }
 
+async function changePassword(req, res) {
+  const { username, pin, newPassword, repeatNewPassword } = req.body;
+
+  const userInfo = await User.findOne({
+    where: {
+      user_name: username,
+    },
+  });
+
+  if (!userInfo) {
+    throw new Error("El usuario no existe");
+  }
+
+  const isMatch = await userInfo.isValidPIN(pin);
+
+  if (!isMatch) {
+    throw new Error("Credenciales incorrectas");
+  }
+
+  if (newPassword !== repeatNewPassword)
+    throw new Error("Verifica que las contraseñas coincidan");
+
+  userInfo.set({
+    user_password: hashedPassword,
+  });
+
+  await userInfo.save();
+
+  return res.send({
+    status: true,
+    message: "Success",
+  });
+}
+
 module.exports = {
   login,
+  changePassword,
 };

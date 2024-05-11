@@ -38,5 +38,10 @@ module.exports = (sequelize, DataTypes) => {
     return bcrypt.compare(password, this.user_password);
   };
 
+  // Método de instancia para validar el PIN
+  User.prototype.isValidPIN = async function (pin) {
+    return bcrypt.compare(pin, this.user_pin);
+  };
+
   return User;
 };

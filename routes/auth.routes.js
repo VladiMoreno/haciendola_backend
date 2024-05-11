@@ -6,4 +6,10 @@ const router = express.Router();
 
 router.post("/login", validator(schemas.login), authController.login);
 
+router.post(
+  "/change-password",
+  validator(schemas.changePassword),
+  authController.changePassword
+);
+
 module.exports = router;
