@@ -31,6 +31,7 @@
     "#middlewares/*": "./middlewares/*",
     "#helpers/*": "./helpers/*",
     "#config/*": "./config/*",
-    "#routes/*": "./routes/*"
+    "#routes/*": "./routes/*",
+    "#utils/*": "./utils/*"
   }
 }

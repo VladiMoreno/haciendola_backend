@@ -9,19 +9,17 @@ async function createUser(req, res) {
 
   const hashedPin = bcrypt.hashSync(pin, bcrypt.genSaltSync(8));
 
-  const userSaved = await User.create({
+  const data = await User.create({
     user_name: username,
     user_password: hashedPassword,
     user_pin: hashedPin,
-    fk_user_state: 1,
+    fk_user_state: 4,
   });
 
   return res.send({
     status: true,
     message: "Success",
-    data: {
-      userSaved,
-    },
+    data,
   });
 }
 
