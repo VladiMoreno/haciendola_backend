@@ -3,11 +3,11 @@ const db = require("#models/index.js");
 const User = db.users;
 
 const signToken = (id, remember) => {
-  const obj = { sub: id };
+  const obj = { pk_user: id };
   if (!remember) {
     obj.exp = Math.floor(Date.now() / 1000) + 60 * 60 * 2;
   }
-  return JWT.sign(obj, process.env.JWT_SECRET);
+  return JWT.sign(obj, process.env.JWT_TOKEN);
 };
 
 async function login(req, res) {

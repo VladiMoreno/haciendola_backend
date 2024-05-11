@@ -19,16 +19,16 @@ const authMiddleWare = async (req, res, next) => {
 
     jwt.verify(token, jwtConfig.secret, async (err, user) => {
       if (err)
-        return res
-          .status(403)
-          .send({ message: "Token expired", status: false });
+        return res.status(403).send({ message: err.message, status: false });
 
-      const authUser = await User.findOne({ where: { pk_user_id: user.id } });
+      const authUser = await User.findOne({
+        where: { pk_user_id: user.pk_user },
+      });
 
       if (!authUser)
         return res
-          .status(403)
-          .send({ message: "Invalid Token", status: false });
+          .status(404)
+          .send({ message: "User Not found!", status: false });
 
       req.user = authUser;
 

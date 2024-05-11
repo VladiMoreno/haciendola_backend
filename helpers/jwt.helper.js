@@ -11,11 +11,12 @@ function encodeRegistrationToken(userId) {
   return token;
 }
 
-function decodeRegistrationToken(token) {
-  let decoded = jwt.verify(token, config.secret);
-  // console.log(decoded, 'DECODED');
+function decodeRegistrationToken(authorization) {
+  const token = authorization && authorization.split(" ")[1];
 
-  let userId = decoded.id;
+  let decoded = jwt.verify(token, config.secret);
+
+  let userId = decoded.pk_user;
 
   // Check that the user didn't take too long
   let dateNow = Math.floor(Date.now() / 1000);
