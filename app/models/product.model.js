@@ -18,16 +18,16 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
     },
     product_grams: {
-      type: DataTypes.FLOAT,
+      type: DataTypes.DECIMAL(10, 2),
     },
     product_stock: {
       type: DataTypes.INTEGER,
     },
     product_price: {
-      type: DataTypes.FLOAT,
+      type: DataTypes.DECIMAL(10, 2),
     },
     product_compare_price: {
-      type: DataTypes.FLOAT,
+      type: DataTypes.DECIMAL(10, 2),
     },
     product_bar_code: {
       type: DataTypes.STRING,
