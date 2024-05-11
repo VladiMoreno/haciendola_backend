@@ -1,5 +1,6 @@
 const JWT = require("jsonwebtoken");
 const db = require("#models/index.js");
+const bcrypt = require("bcrypt");
 const User = db.users;
 
 const signToken = (id, remember) => {
@@ -40,8 +41,8 @@ async function login(req, res) {
   });
 }
 
-async function changePassword(req, res) {
-  const { username, pin, newPassword, repeatNewPassword } = req.body;
+async function validarPIN(req, res) {
+  const { username, pin } = req.body;
 
   const userInfo = await User.findOne({
     where: {
@@ -59,14 +60,33 @@ async function changePassword(req, res) {
     throw new Error("Credenciales incorrectas");
   }
 
+  return res.send({
+    status: true,
+    message: "Success",
+  });
+}
+
+async function changePassword(req, res) {
+  const { username, newPassword, repeatNewPassword } = req.body;
+
   if (newPassword !== repeatNewPassword)
     throw new Error("Verifica que las contraseñas coincidan");
 
-  userInfo.set({
-    user_password: hashedPassword,
+  const userInfo = await User.findOne({
+    where: {
+      user_name: username,
+    },
   });
 
-  await userInfo.save();
+  if (!userInfo) {
+    throw new Error("El usuario no existe");
+  }
+
+  const hashedPassword = bcrypt.hashSync(newPassword, bcrypt.genSaltSync(8));
+
+  await userInfo.update({
+    user_password: hashedPassword,
+  });
 
   return res.send({
     status: true,
@@ -76,5 +96,6 @@ async function changePassword(req, res) {
 
 module.exports = {
   login,
+  validarPIN,
   changePassword,
 };

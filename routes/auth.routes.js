@@ -5,7 +5,11 @@ const schemas = require("#validators/auth.validator.js");
 const router = express.Router();
 
 router.post("/login", validator(schemas.login), authController.login);
-
+router.post(
+  "/validar-pin",
+  validator(schemas.validarPIN),
+  authController.validarPIN
+);
 router.post(
   "/change-password",
   validator(schemas.changePassword),
