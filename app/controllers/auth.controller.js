@@ -1,5 +1,22 @@
-const { login } = require("#services/auth.service");
+const AuthService = require("#services/auth.service.js");
+const { handleSequelizeError } = require("#utils/errorHandler.util.js");
 
-const { getSaltSync, hashSync } = require("bcrypt");
+exports.login = async (req, res) => {
+  try {
+    await AuthService.login(req, res);
+  } catch (error) {
+    const { statusCode, message } = handleSequelizeError(error);
 
-async function createUser(req, res) {}
+    if (statusCode !== 404) {
+      return res.status(statusCode).send({
+        status: false,
+        message: message,
+        error: error.message,
+      });
+    }
+    return res.status(statusCode).send({
+      status: false,
+      message: message,
+    });
+  }
+};

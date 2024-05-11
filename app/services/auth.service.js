@@ -11,31 +11,33 @@ const signToken = (id, remember) => {
 };
 
 async function login(req, res) {
-  try {
-    const { username, password, remember } = req.body;
+  const { username, password, remember } = req.body;
 
-    const userInfo = await User.findOne({
-      where: {
-        user_name: username,
-      },
-    });
+  const userInfo = await User.findOne({
+    where: {
+      user_name: username,
+    },
+  });
 
-    if (!userInfo) {
-      throw new Error();
-    }
-
-    const isMatch = await userInfo.isValidPassword(password);
-
-    if (!isMatch) {
-      throw new Error();
-    }
-
-    const token = signToken(userInfo.pk_user_id, remember);
-
-    res.send({ userInfo, token });
-  } catch (error) {
-    res.status(401).send({ success: false, error });
+  if (!userInfo) {
+    throw new Error("El usuario no existe");
   }
+
+  const isMatch = await userInfo.isValidPassword(password);
+
+  if (!isMatch) {
+    throw new Error("Credenciales incorrectas");
+  }
+
+  const token = signToken(userInfo.pk_user_id, remember);
+
+  return res.send({
+    status: true,
+    message: "Success",
+    data: {
+      token,
+    },
+  });
 }
 
 module.exports = {

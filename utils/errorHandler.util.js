@@ -26,8 +26,8 @@ function handleSequelizeError(error) {
       message = "Database connection error";
       break;
     default:
-      statusCode = 500; // Internal Server Error
-      message = "Sequelize error";
+      statusCode = 404; // Internal Server Error
+      message = error.message;
       break;
   }
 

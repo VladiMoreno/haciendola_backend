@@ -13,7 +13,7 @@ async function createUser(req, res) {
     user_name: username,
     user_password: hashedPassword,
     user_pin: hashedPin,
-    fk_user_state: 4,
+    fk_user_state: 2,
   });
 
   return res.send({
