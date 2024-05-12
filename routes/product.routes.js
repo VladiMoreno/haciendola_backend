@@ -33,45 +33,50 @@ router.post(
             "application/json": {
                 "schema": {
                     "required": [
-                        "handle",
-                        "title",
-                        "description",
-                        "sku",
-                        "grams",
-                        "price",
-                        "compare_price",
-                        "bar_code",
+                        "product_handle",
+                        "product_title",
+                        "product_description",
+                        "product_sku",
+                        "product_grams",
+                        "product_stock",
+                        "product_price",
+                        "product_compare_price",
+                        "product_bar_code",
                     ],
                     "properties": {
-                        "handle": {
+                        "product_handle": {
                             "description": "handle del producto",
                             "type": "string"
                         },
-                        "title": {
+                        "product_title": {
                             "description": "title del producto",
                             "type": "string"
                         },
-                        "description": {
+                        "product_description": {
                             "description": "description del producto",
                             "type": "string"
                         },
-                        "sku": {
+                        "product_sku": {
                             "description": "sku del producto",
                             "type": "number"
                         },
-                        "grams": {
+                        "product_grams": {
                             "description": "grams del producto",
                             "type": "number"
                         },
-                        "price": {
+                        "product_stock": {
+                            "description": "stock del producto",
+                            "type": "number"
+                        },
+                        "product_price": {
                             "description": "price del producto",
                             "type": "number"
                         },
-                        "compare_price": {
+                        "product_compare_price": {
                             "description": "compare_price del producto",
                             "type": "number"
                         },
-                        "bar_code": {
+                        "product_bar_code": {
                             "description": "bar_code del producto",
                             "type": "string"
                         }
@@ -100,50 +105,55 @@ router.put(
             "application/json": {
                 "schema": {
                     "required": [
-                        "id",
-                        "handle",
-                        "title",
-                        "description",
-                        "sku",
-                        "grams",
-                        "price",
-                        "compare_price",
-                        "bar_code",
+                        "pk_product_id",
+                        "product_handle",
+                        "product_title",
+                        "product_description",
+                        "product_sku",
+                        "product_grams",
+                        "product_stock",
+                        "product_price",
+                        "product_compare_price",
+                        "product_bar_code",
                     ],
                     "properties": {
-                        "id": {
+                        "pk_product_id": {
                             "description": "id del producto",
                             "type": "number"
                         },
-                        "handle": {
+                        "product_handle": {
                             "description": "handle del producto",
                             "type": "string"
                         },
-                        "title": {
+                        "product_title": {
                             "description": "title del producto",
                             "type": "string"
                         },
-                        "description": {
+                        "product_description": {
                             "description": "description del producto",
                             "type": "string"
                         },
-                        "sku": {
+                        "product_sku": {
                             "description": "sku del producto",
                             "type": "number"
                         },
-                        "grams": {
+                        "product_grams": {
                             "description": "grams del producto",
                             "type": "number"
                         },
-                        "price": {
+                        "product_stock": {
+                            "description": "stock del producto",
+                            "type": "number"
+                        },
+                        "product_price": {
                             "description": "price del producto",
                             "type": "number"
                         },
-                        "compare_price": {
+                        "product_compare_price": {
                             "description": "compare_price del producto",
                             "type": "number"
                         },
-                        "bar_code": {
+                        "product_bar_code": {
                             "description": "bar_code del producto",
                             "type": "string"
                         }
