@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "node swagger.js && nodemon app.js",
+    "swagger-autogen": "node swagger.js"
   },
   "keywords": [],
   "author": "",
@@ -21,7 +22,9 @@
     "sequelize": "^6.37.3"
   },
   "devDependencies": {
-    "nodemon": "^3.1.0"
+    "nodemon": "^3.1.0",
+    "swagger-autogen": "^2.23.7",
+    "swagger-ui-express": "^5.0.0"
   },
   "imports": {
     "#services/*": "./app/services/*",

@@ -5,7 +5,6 @@ const schemas = {
     handle: Joi.string().required(),
     title: Joi.string().required(),
     description: Joi.string().required(),
-
     sku: Joi.number().required(),
     grams: Joi.number().required(),
     price: Joi.number().required(),
