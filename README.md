@@ -25,6 +25,8 @@
 ## Datos técnicos
 
     Realizado con Node 20
+    Base de datos hecho en MySQL
+    
     Sequelize como ORM
     Joi para validación de parametros de endpoints
     bcrypt para encriptar la contraseña y el PIN
