@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node swagger.js && nodemon app.js",
-    "swagger-autogen": "node swagger.js"
+    "swagger-autogen": "node swagger.js",
+    "deploy": "npm run swagger-autogen && node app.js"
   },
   "keywords": [],
   "author": "",
